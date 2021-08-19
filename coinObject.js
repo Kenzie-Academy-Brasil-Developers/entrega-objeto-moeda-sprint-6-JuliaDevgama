@@ -1,3 +1,4 @@
+let x = []
 const coin = {
     state: 0,
 
@@ -6,33 +7,53 @@ const coin = {
     },
 
     toString: function (){
+        this.flip()
         if(this.state === 0){
-            console.log('Heads')
+            return 'Heads'
         } else if(this.state === 1){
-            console.log('Tails')
+            return 'Tails'
         }
     },
     toHTML: function (){
         const image = document.createElement('img')
-        if(this.state === 0){
+        if(this.toString() === 'Heads'){
+            x.push('Heads')
             image.src = './imgs/cara.png'
-            document.getElementByClassName('principal').appendChild(image)
-        } else if(this.state === 1){
+            image.alt = 'Heads'
+        } else if(this.toString() === 'Tails'){
+            x.push('Tails')
             image.src = './imgs/coroa.png'
-            image.src = './imgs/cara.png'
-            document.getElementByClassName('principal').appendChild(image)
-
-            return image
+            image.alt = 'Tails'
         }
+        return image
     }
 
 }
-function display20Flips(){
-    const results = []
+function display20Flips() {
+    const results = [];
     for(let i = 0; i < 20; i++){
-        results.push()
+        results.push(coin.toString())
     }
-}
-coin.flip()
-console.log(coin.state)
-coin.toString()
+    document.body.innerText = results
+    return results
+    // Depois que o seu loop terminar, exiba o resultado na página no formato de TEXTO.
+    // Além de exibir os resultados na página, não esqueça
+    // de retornar o valor de "results".
+    // Caso esqueça de retornar "results", sua função não
+    // irá passar nos testes.
+  }
+  display20Flips()
+  function display20Images() {
+    const results = x;
+    for(let i = 0; i < 20; i++){
+        document.body.appendChild(coin.toHTML())
+    }
+    return results
+    // Depois que o seu loop terminar, exiba o resultado na página no formato de IMAGEM.
+    // Além de exibir os resultados na página, não esqueça
+    // de retornar o valor de "results".
+    // Caso esqueça de retornar "results", sua função não
+    // irá passar nos testes.
+  }
+  display20Images()
+
